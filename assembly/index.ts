@@ -24,7 +24,7 @@ export function foo(): Map<string, string> {
   return a; 
 }
 
-export function lowdown(): string[] {
+export function lowMath(): string[] {
   
   let results:string[] = []; 
 
