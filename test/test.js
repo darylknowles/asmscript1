@@ -15,6 +15,10 @@ let result;
 result = testModule.add(17,17);
 console.log('add', result);
 
+//Float add
+console.log('js add', .1 + .2)
+console.log('wasm add',testModule.floatadd(0.1,0.2))
+
 //Fast loop?
 result = testModule.bigloop();
 console.log('bigloop',result);

@@ -6,6 +6,10 @@ export function add(a: i32, b: i32): i32 {
   return a + b;
 }
 
+export function floatadd(a: f64, b: f64): f64 {
+  return a + b; 
+}
+
 export function bigloop(): f64 {
   let sum: f64 = 0; 
   for (let i: i32 = 0; i < 1_000_000; i++) {
