@@ -24,6 +24,10 @@ export function foo(): Map<string, string> {
   return a; 
 }
 
+export function hello(): string {
+  return "Hello World!";
+}
+
 export function lowMath(): string[] {
   
   let results:string[] = []; 
@@ -61,6 +65,46 @@ export function lowMath(): string[] {
   return results; 
 }
 
-export function hello(): string {
-  return "Hello World!";
+export function lowMemory(): string[] {
+  let results:string[] = []; 
+
+  //store and load
+  results.push("load and store");
+  results.push(load<i32>(0).toString())
+  store<i32>(0,777);  
+  results.push(load<i32>(0).toString())
+
+  //Get total size
+  results.push("Memory size");
+  results.push(memory.size().toString());
+
+  //Grow memory
+  results.push("...after grow");
+  memory.grow(1); 
+  results.push(memory.size().toString());
+
+  //Fill memory
+  results.push("Fill");
+  let offsetA = 0; 
+  memory.fill(offsetA,255, 100);   
+  results.push(load<u8>(offsetA).toString());
+  results.push(load<u8>(offsetA+1).toString());
+  results.push(load<u8>(offsetA+98).toString());
+  results.push(load<u8>(offsetA+99).toString());
+  results.push(load<u8>(offsetA+100).toString());
+
+  results.push("Copy");
+  let offsetB = offsetA+1024; 
+  memory.copy(offsetB, offsetA, 50); 
+  results.push(load<u8>(offsetB).toString());
+  results.push(load<u8>(offsetB+1).toString());
+  results.push(load<u8>(offsetB+98).toString());
+  results.push(load<u8>(offsetB+99).toString());
+  results.push(load<u8>(offsetB+100).toString());
+
+  results.push("Compare");
+  results.push(memory.compare(offsetA, offsetB, 50).toString());
+  results.push(memory.compare(offsetA, offsetB, 100).toString());
+  results.push(memory.compare(offsetB, offsetA, 100).toString());
+  return results;  
 }

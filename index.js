@@ -16,13 +16,6 @@ const testModule = loader.instantiateSync(
 
 let result;
 
-//Testing low level results
-result = testModule.__getArray(testModule.lowMath());
-result = result.map((value) =>
-    testModule.__getString(value)
-);
-console.log('lowMath', result);
-
 //Simple add
 result = testModule.add(17, 17);
 console.log('add', result);
@@ -46,4 +39,17 @@ console.log('magicnumber', result);
 //Getting strings back
 result = testModule.__getString(testModule.hello());
 console.log('hello:', result);
+
+//Testing low level results
+result = testModule.__getArray(testModule.lowMath());
+result = result.map((value) =>
+    testModule.__getString(value)
+);
+console.log('lowMath', result);
+
+result = testModule.__getArray(testModule.lowMemory());
+result = result.map((value) =>
+    testModule.__getString(value)
+);
+console.log('lowMemory', result);
 
