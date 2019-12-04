@@ -4,7 +4,7 @@ const loader = require("@assemblyscript/loader");
 const imports = {
     env: {
         abort(_msg, _file, line, column) {
-            console.error("abort called at exports.ts:" + line + ":" + column);
+            console.error("abort called at:" + line + ":" + column);
         }
     }
 };
@@ -19,3 +19,5 @@ const result = myModule.callMeFromJavascript(2,3);
 console.log(`result: ${result}`);
 
 console.log(`constant: ${myModule.GET_THIS_CONSTANT_FROM_JAVASCRIPT.valueOf()}`);
+
+console.log(`private function: ${myModule.addIntegerWithConstant}`);

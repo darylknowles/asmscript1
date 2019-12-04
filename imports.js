@@ -6,14 +6,15 @@ const imports = {
         abort(_msg, _file, line, column) {
             console.error("abort called at:" + line + ":" + column);
         }
+    },
+    imports: {
+        consoleLog: value => console.log(value)
     }
 };
 
 const myModule = loader.instantiateSync(
-    fs.readFileSync(__dirname + "/build/optimized.wasm"),
+    fs.readFileSync(__dirname + "/build/imports.wasm"),
     imports
 )
 
 
-const addResult = myModule.add(24, 24);
-console.log(`Hello World! addResult: ${addResult}`);
