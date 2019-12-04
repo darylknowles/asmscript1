@@ -10,7 +10,7 @@ const imports = {
 };
 
 const testModule = loader.instantiateSync(
-    fs.readFileSync(__dirname + "/build/optimized.wasm"),
+    fs.readFileSync(__dirname + "/build/test.wasm"),
     imports
 )
 

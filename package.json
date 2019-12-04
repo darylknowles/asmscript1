@@ -1,15 +1,9 @@
 {
   "scripts": {
-    "start:test1": "npm run asbuild:optimized && node ./test1.js",
-    "start:hello-world": "npm run asbuild:optimized && node ./hello-world.js",
-    "start:exports": "npm run asbuild:exports && node ./exports.js",
-    "start:linear-memory": "npm run asbuild:linear-memory && node ./linear-memory.js",
-    "start:imports": "npm run asbuild:imports && node ./imports.js",
-    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize",
-    "asbuild": "npm run asbuild:optimized",
-    "asbuild:exports": "asc assembly/exports.ts -b build/exports.wasm -t build/exports.wat --sourceMap --validate --optimize",
-    "asbuild:linear-memory": "asc assembly/linear-memory.ts -b build/linear-memory.wasm -t build/linear-memory.wat --sourceMap --validate --optimize",
-    "asbuild:imports": "asc assembly/imports.ts -b build/imports.wasm -t build/imports.wat --sourceMap --validate --optimize"
+    "start:test": "asc assembly/test.ts -b build/test.wasm -t build/test.wat --sourceMap --validate --optimize && node ./test.js",
+    "start:exports": "asc assembly/exports.ts -b build/exports.wasm -t build/exports.wat --sourceMap --validate --optimize && node ./exports.js",
+    "start:linear-memory": "asc assembly/linear-memory.ts -b build/linear-memory.wasm -t build/linear-memory.wat --sourceMap --validate --optimize && node ./linear-memory.js",
+    "start:imports": "asc assembly/imports.ts -b build/imports.wasm -t build/imports.wat --sourceMap --validate --optimize && node ./imports.js"
   },
   "devDependencies": {
     "assemblyscript": "^0.8.1"
