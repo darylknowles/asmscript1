@@ -108,3 +108,4 @@ export function lowMemory(): string[] {
   results.push(memory.compare(offsetB, offsetA, 100).toString());
   return results;  
 }
+

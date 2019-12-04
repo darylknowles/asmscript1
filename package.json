@@ -1,9 +1,11 @@
 {
   "scripts": {
-    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --validate --debug",
+    "start:test1": "npm run asbuild:optimized && node ./test1.js",
+    "start:hello-world": "npm run asbuild:optimized && node ./hello-world.js",
+    "start:exports": "npm run asbuild:exports && node ./exports.js",
     "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize",
-    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
-    "start": "npm run asbuild:optimized && node ./index.js"
+    "asbuild": "npm run asbuild:optimized",
+    "asbuild:exports": "asc assembly/exports.ts -b build/exports.wasm -t build/exports.wat --sourceMap --validate --optimize"
   },
   "devDependencies": {
     "assemblyscript": "^0.8.1"

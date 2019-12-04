@@ -14,6 +14,13 @@ const testModule = loader.instantiateSync(
     imports
 )
 
+const DumpStringArray = (array) => {
+    for (let value of array) {
+        let s = testModule.__getString(value);
+        console.log(s);
+    }
+}
+
 let result;
 
 //Simple add
@@ -42,14 +49,11 @@ console.log('hello:', result);
 
 //Testing low level results
 result = testModule.__getArray(testModule.lowMath());
-result = result.map((value) =>
-    testModule.__getString(value)
-);
-console.log('lowMath', result);
+console.log("lowMath");
+DumpStringArray(result);
 
 result = testModule.__getArray(testModule.lowMemory());
-result = result.map((value) =>
-    testModule.__getString(value)
-);
-console.log('lowMemory', result);
+console.log("lowMemory");
+DumpStringArray(result);
+
 
