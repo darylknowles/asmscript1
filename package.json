@@ -3,7 +3,8 @@
     "start:test": "asc assembly/test.ts -b build/test.wasm -t build/test.wat --sourceMap --validate --optimize && node ./test.js",
     "start:exports": "asc assembly/exports.ts -b build/exports.wasm -t build/exports.wat --sourceMap --validate --optimize && node ./exports.js",
     "start:linear-memory": "asc assembly/linear-memory.ts -b build/linear-memory.wasm -t build/linear-memory.wat --sourceMap --validate --optimize && node ./linear-memory.js",
-    "start:imports": "asc assembly/imports.ts -b build/imports.wasm -t build/imports.wat --sourceMap --validate --optimize && node ./imports.js"
+    "start:imports": "asc assembly/imports.ts -b build/imports.wasm -t build/imports.wat --sourceMap --validate --optimize && node ./imports.js",
+    "start:graphics": "asc assembly/graphics.ts -b build/graphics.wasm -t build/graphics.wat --sourceMap --validate --optimize && node ./graphics.js"
   },
   "devDependencies": {
     "assemblyscript": "^0.8.1"
