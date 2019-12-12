@@ -1,7 +1,7 @@
 memory.grow(1);
 
 
-const CHECKERBOARD_SIZE: i32 = 20;
+const CHECKERBOARD_SIZE: i32 = 10;
 
 export const CHECKERBOARD_BUFFER_POINTER: i32 = 0;
 export const CHECKERBOARD_BUFFER_SIZE: i32 =

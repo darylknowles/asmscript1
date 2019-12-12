@@ -4,10 +4,13 @@
     "start:exports": "asc assembly/exports.ts -b build/exports.wasm -t build/exports.wat --sourceMap --validate --optimize && node ./exports.js",
     "start:linear-memory": "asc assembly/linear-memory.ts -b build/linear-memory.wasm -t build/linear-memory.wat --sourceMap --validate --optimize && node ./linear-memory.js",
     "start:imports": "asc assembly/imports.ts -b build/imports.wasm -t build/imports.wat --sourceMap --validate --optimize && node ./imports.js",
-    "start:graphics": "asc assembly/graphics.ts -b build/graphics.wasm -t build/graphics.wat --sourceMap --validate --optimize && node ./graphics.js"
+    "start:graphics": "asc assembly/graphics.ts -b build/graphics.wasm -t build/graphics.wat --sourceMap --validate --optimize && npm run opengraphics",
+    "opengraphics": "http-server -a localhost -p 1234"
   },
   "devDependencies": {
-    "assemblyscript": "^0.8.1"
+    "assemblyscript": "^0.8.1",
+    "concurrently": "^5.0.1",
+    "http-server": "^0.12.0"
   },
   "dependencies": {
     "@assemblyscript/loader": "^0.8.1"
