@@ -11,65 +11,65 @@ const runWasm = async () => {
         }
     };
 
-    WebAssembly.instantiateStreaming(fetch('build/graphics.wasm'), imports)
-        .then(results => {
-            const exports = results.instance.exports;
-            const memory = exports.memory; 
+    const results = await WebAssembly.instantiateStreaming(fetch('build/graphics.wasm'), imports);
 
-            const wasmByteMemoryArray = new Uint8Array(memory.buffer);
+    const exports = results.instance.exports;
+    const memory = exports.memory;
 
-            const canvasElement = document.querySelector("canvas");
+    const wasmByteMemoryArray = new Uint8Array(memory.buffer);
 
-            const canvasContext = canvasElement.getContext("2d");
-            const canvasImageData = canvasContext.createImageData(
-                canvasElement.width,
-                canvasElement.height
-            );
+    const canvasElement = document.querySelector("canvas");
 
-            canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
+    const canvasContext = canvasElement.getContext("2d");
+    const canvasImageData = canvasContext.createImageData(
+        canvasElement.width,
+        canvasElement.height
+    );
 
-            const getDarkValue = () => {
-                return Math.floor(Math.random() * 100);
-            };
+    canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
-            const getLightValue = () => {
-                return Math.floor(Math.random() * 127) + 127;
-            };
+    const getDarkValue = () => {
+        return Math.floor(Math.random() * 100);
+    };
 
-            const drawCheckerBoard = () => {
-                
-                // Generate a new checkboard in wasm
-                exports.generateCheckerBoard(
-                    getDarkValue(),
-                    getDarkValue(),
-                    getDarkValue(),
-                    getLightValue(),
-                    getLightValue(),
-                    getLightValue()
-                );
+    const getLightValue = () => {
+        return Math.floor(Math.random() * 127) + 127;
+    };
 
-                // Pull out the RGBA values from Wasm memory, the we wrote to in wasm,
-                // starting at the checkerboard pointer (memory array index)
-                const imageDataArray = wasmByteMemoryArray.slice(
-                    exports.CHECKERBOARD_BUFFER_POINTER.valueOf(),
-                    exports.CHECKERBOARD_BUFFER_SIZE.valueOf()
-                );
+    const drawCheckerBoard = () => {
 
-                // Set the values to the canvas image data
-                canvasImageData.data.set(imageDataArray);
+        // Generate a new checkboard in wasm
+        exports.generateCheckerBoard(
+            getDarkValue(),
+            getDarkValue(),
+            getDarkValue(),
+            getLightValue(),
+            getLightValue(),
+            getLightValue()
+        );
 
-                // Clear the canvas
-                canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
+        // Pull out the RGBA values from Wasm memory, the we wrote to in wasm,
+        // starting at the checkerboard pointer (memory array index)
+        const imageDataArray = wasmByteMemoryArray.slice(
+            exports.CHECKERBOARD_BUFFER_POINTER.valueOf(),
+            exports.CHECKERBOARD_BUFFER_SIZE.valueOf()
+        );
 
-                // Place the new generated checkerboard onto the canvas
-                canvasContext.putImageData(canvasImageData, 0, 0);
-            };
+        // Set the values to the canvas image data
+        canvasImageData.data.set(imageDataArray);
 
-            drawCheckerBoard();
-            setInterval(() => {
-                drawCheckerBoard();
-            }, 2000);
-        })
+        // Clear the canvas
+        canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
+        // Place the new generated checkerboard onto the canvas
+        canvasContext.putImageData(canvasImageData, 0, 0);
+    };
+
+    drawCheckerBoard();
+    setInterval(() => {
+        drawCheckerBoard();
+    }, 2000);
+
 
 
 }
