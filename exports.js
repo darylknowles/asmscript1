@@ -1,6 +1,8 @@
 const fs = require("fs");
 const loader = require("@assemblyscript/loader");
 
+console.log(`*** ${__filename} ***`); 
+
 const imports = {
     env: {
         abort(_msg, _file, line, column) {
