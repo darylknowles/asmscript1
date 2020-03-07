@@ -137,6 +137,11 @@ function createAndStartAudioBufferSource() {
   audioBufferSource.start();
 }
 
+window.pause = () => {
+  beforePlay();
+  stopAudioBufferSource();
+};
+
 window.playOriginal = () => {
   beforePlay();
   // Set the float audio samples to the left and right channel
@@ -145,6 +150,12 @@ window.playOriginal = () => {
   audioBuffer.getChannelData(1).set(originalAudioSamples);
 
   createAndStartAudioBufferSource();
+
+  setTimeout(() => {
+    beforePlay();
+    stopAudioBufferSource();  
+  },2000);
+
 };
 
 window.playAmplified = () => {
@@ -155,9 +166,11 @@ window.playAmplified = () => {
   audioBuffer.getChannelData(1).set(amplifiedAudioSamples);
 
   createAndStartAudioBufferSource();
+
+  setTimeout(() => {
+    beforePlay();
+    stopAudioBufferSource();  
+  },2000);
+
 };
 
-window.pause = () => {
-  beforePlay();
-  stopAudioBufferSource();
-};

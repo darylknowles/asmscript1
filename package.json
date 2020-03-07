@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "assemblyscript": "^0.8.1",
-    "concurrently": "^5.0.1",
+    "concurrently": "^5.0.1", 
     "http-server": "^0.12.0"
   },
   "dependencies": {
