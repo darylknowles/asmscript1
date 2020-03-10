@@ -23,3 +23,7 @@ console.log(`result: ${result}`);
 console.log(`constant: ${myModule.GET_THIS_CONSTANT_FROM_JAVASCRIPT.valueOf()}`);
 
 console.log(`private function: ${myModule.addIntegerWithConstant}`);
+
+console.log('module dump');
+console.dir(myModule);
+
