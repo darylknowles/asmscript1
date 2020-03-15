@@ -1,4 +1,4 @@
-const runWasm = async () => {
+const runGraphicsWasm = async () => {
 
     const imports = {
         env: {
@@ -74,4 +74,4 @@ const runWasm = async () => {
 
 }
 
-runWasm();
+runGraphicsWasm();

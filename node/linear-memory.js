@@ -12,18 +12,16 @@ const imports = {
 };
 
 const myModule = loader.instantiateSync(
-    fs.readFileSync(__dirname + "/build/exports.wasm"),
+    fs.readFileSync(__dirname + "/../build/linear-memory.wasm"),
     imports
 )
 
+const memory = myModule.memory; 
 
-const result = myModule.callMeFromJavascript(2,3);
-console.log(`result: ${result}`);
+const wasmByteMemoryArray = new Uint8Array(memory.buffer);
 
-console.log(`constant: ${myModule.GET_THIS_CONSTANT_FROM_JAVASCRIPT.valueOf()}`);
+console.log(wasmByteMemoryArray[0]); // Should Log "24".
 
-console.log(`private function: ${myModule.addIntegerWithConstant}`);
-
-console.log('module dump');
-console.dir(myModule);
+wasmByteMemoryArray[1] = 25;
+console.log(myModule.readWasmMemoryAndReturnIndexOne()); // Should Log "25"
 

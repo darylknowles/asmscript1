@@ -32,7 +32,7 @@ const byteSamplesToFloatSamples = byteSamples => {
   return floatSamples;
 };
 
-const runWasm = async () => {
+const runAudioWasm = async () => {
 
   const imports = {
     env: {
@@ -100,7 +100,7 @@ const runWasm = async () => {
   // We are now done! The "play" Functions will handle playing the
   // audio buffer
 };
-runWasm();
+runAudioWasm();
 
 function beforePlay() {
   // Check if context is in suspended state (autoplay policy)

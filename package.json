@@ -1,11 +1,14 @@
 {
   "scripts": {
-    "start:test": "asc assembly/test.ts -b build/test.wasm -t build/test.wat --sourceMap --validate --optimize && node ./test.js",
-    "start:exports": "asc assembly/exports.ts -b build/exports.wasm -t build/exports.wat --sourceMap --validate --optimize && node ./exports.js",
-    "start:linear-memory": "asc assembly/linear-memory.ts -b build/linear-memory.wasm -t build/linear-memory.wat --sourceMap --validate --optimize && node ./linear-memory.js",
-    "start:imports": "asc assembly/imports.ts -b build/imports.wasm -t build/imports.wat --sourceMap --validate --optimize && node ./imports.js",
-    "start:graphics": "asc assembly/graphics.ts -b build/graphics.wasm -t build/graphics.wat --sourceMap --validate --optimize && http-server -a localhost -p 1234 -o /graphics.html",
-    "start:audio": "asc assembly/audio.ts -b build/audio.wasm -t build/audio.wat --sourceMap --validate --optimize && http-server -a localhost -p 1234 -o /audio.html"
+    "start:web": "npm run build:audio && npm run build:graphics && http-server -a localhost -p 1234 -o /web/index.html",
+    "start:node": "npm run build:node && node ./node/start.js ",    
+    "build:audio": "asc assembly/audio.ts -b build/audio.wasm -t build/audio.wat --sourceMap --validate --optimize",
+    "build:graphics": "asc assembly/graphics.ts -b build/graphics.wasm -t build/graphics.wat --sourceMap --validate --optimize",
+    "build:node": "npm run build:test && npm run build:exports && npm run build:imports && npm run build:linear-memory",
+    "build:test": "asc assembly/test.ts -b build/test.wasm -t build/test.wat --sourceMap --validate",
+    "build:exports": "asc assembly/exports.ts -b build/exports.wasm -t build/exports.wat --sourceMap --validate",
+    "build:imports": "asc assembly/imports.ts -b build/imports.wasm -t build/imports.wat --sourceMap --validate",
+    "build:linear-memory": "asc assembly/linear-memory.ts -b build/linear-memory.wasm -t build/linear-memory.wat --sourceMap --validate"    
   },
   "devDependencies": {
     "assemblyscript": "^0.9.2",
