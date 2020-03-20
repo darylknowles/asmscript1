@@ -1,2 +1,9 @@
+# exclude build and modules folders
 build
 node_modules
+
+# exclude all wasm build artifacts
+**/*/*.wasm
+**/*/*.wasm.map
+**/*/*.wat
+

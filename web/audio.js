@@ -48,7 +48,7 @@ const runAudioWasm = async () => {
   // Instantiate our wasm module
   //const wasmModule = await wasmBrowserInstantiate("build/audio.wasm");
 
-  const wasmModule = await WebAssembly.instantiateStreaming(fetch('build/audio.wasm'), imports);
+  const wasmModule = await WebAssembly.instantiateStreaming(fetch('./audio.wasm'), imports);
   
   // Get our exports object, with all of our exported Wasm Properties
   const exports = wasmModule.instance.exports;

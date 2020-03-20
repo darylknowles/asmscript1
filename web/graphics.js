@@ -11,7 +11,7 @@ const runGraphicsWasm = async () => {
         }
     };
 
-    const results = await WebAssembly.instantiateStreaming(fetch('build/graphics.wasm'), imports);
+    const results = await WebAssembly.instantiateStreaming(fetch('./graphics.wasm'), imports);
 
     const exports = results.instance.exports;
     const memory = exports.memory;
